@@ -1,8 +1,23 @@
-﻿@{
+﻿@model Joke?
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (Model is null)
+{
+    <h1>Your joke could not be retrieve, please try again</h1>
+}
+else
+{
+    <h2>ID - @Model.id : @Model.category</h2>
+
+    @if (Model.joke is not null)
+    {
+        <p>@Model.joke</p>
+    }
+    else if (Model.setup is not null && Model.delivery is not null)
+    {
+        <p>@Model.setup</p>
+        <p><strong>@Model.delivery</strong></p>
+	}
+}

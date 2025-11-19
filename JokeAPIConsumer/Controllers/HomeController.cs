@@ -8,6 +8,25 @@ namespace JokeAPIConsumer.Controllers
     {
         public IActionResult Index()
         {
+            // API Url to get any joke excluding sensitive categories
+            string jokeApiUrl = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit";
+
+            // Create an instance of HttpClient to make the API request
+            HttpClient client = new();
+            HttpResponseMessage response = client.GetAsync(jokeApiUrl).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Read the response content as a string
+                string jsonResponse = response.Content.ReadAsStringAsync().Result;
+
+                // Deserialize the JSON response to a Joke object
+                Joke joke = System.Text.Json.JsonSerializer.Deserialize<Joke>(jsonResponse);
+
+                // Pass the joke to the view
+                return View(joke);
+            }
+
             return View();
         }
 
