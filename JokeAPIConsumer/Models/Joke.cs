@@ -1,28 +1,58 @@
-﻿namespace JokeAPIConsumer.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace JokeAPIConsumer.Models;
 
 
 public class Joke
 {
-    public bool error { get; set; }
-    public string category { get; set; }
-    public string type { get; set; }
-    public string? joke { get; set; }
-    public Flags flags { get; set; }
-    public int id { get; set; }
-    public bool safe { get; set; }
-    public string lang { get; set; }
+    [JsonPropertyName("error")]
+    public bool Error { get; set; }
 
-    public string? setup { get; set; }
+    [JsonPropertyName("category")]
+    public string Category { get; set; }
 
-    public string? delivery { get; set; }
+    [JsonPropertyName("type")]
+    public string Type { get; set; }
+
+    [JsonPropertyName("joke")]
+    public string? JokeText { get; set; }
+
+    [JsonPropertyName("flags")]
+    public Flags Flags { get; set; }
+
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("safe")]
+    public bool Safe { get; set; }
+
+    [JsonPropertyName("lang")]
+    public string Language { get; set; }
+
+    [JsonPropertyName("setup")]
+    public string? Setup { get; set; }
+
+    [JsonPropertyName("delivery")]
+    public string? Delivery { get; set; }
 }
 
 public class Flags
 {
-    public bool nsfw { get; set; }
-    public bool religious { get; set; }
-    public bool political { get; set; }
-    public bool racist { get; set; }
-    public bool sexist { get; set; }
-    public bool _explicit { get; set; }
+    [JsonPropertyName("nsfw")]
+    public bool Nsfw { get; set; }
+
+    [JsonPropertyName("religious")]
+    public bool Religious { get; set; }
+
+    [JsonPropertyName("political")]
+    public bool Political { get; set; }
+
+    [JsonPropertyName("racist")]
+    public bool Racist { get; set; }
+
+    [JsonPropertyName("sexist")]
+    public bool Sexist { get; set; }
+
+    [JsonPropertyName("_explicit")]
+    public bool Explicit { get; set; }
 }
